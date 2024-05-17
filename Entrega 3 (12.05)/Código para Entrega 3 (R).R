@@ -84,7 +84,8 @@ M <- D %>%
   summarize(n = n()) %>%
   mutate(freq = n / sum(n))
 
-M$freq <- round(M$freq, 2)
+M$freq <- round(M$freq,4)
+M$freq <- M$freq*100
 
 porcentagens <- str_c(M$freq, "%") %>% str_replace("\\.", ",")
 
@@ -96,7 +97,7 @@ M <- rename(M, "Armadilha" = trap_work_first)
 #Gráfico:
 K <- ggplot(M) +
   aes(
-    x = fct_reorder(setting_terrain, freq, .desc = T), y = freq,
+    x = fct_reorder(setting_terrain, n, .desc = T), y = n,
     fill = Armadilha, label = legendas
   ) +
   geom_col(position = position_dodge2(preserve = "single", padding = 0)) +
@@ -105,9 +106,9 @@ K <- ggplot(M) +
     vjust = -0.5, hjust = 0.5,
     size = 3
   ) +
-  labs(x = "Terreno", y = "%") +
+  labs(x = "Terreno", y = "Frequência") +
   estat_theme()
-K + scale_y_continuous(limits = c(0, 0.6))
+K + scale_y_continuous(limits = c(0, 70))
 ggsave("Funcionamento_armadilhaxTerreno.pdf", width = 158, height = 93, units = "mm")
 
 #Tabela de frequência:
