@@ -42,8 +42,39 @@ D <- D[ , c(8:9)]
 #Gráfico:
 ggplot(D) +
   aes(x = engagement, y = imdb) +
-  geom_point(colour = "#A11D21", size = 3) +
-  geom_point(alpha = 0.3) +
+  geom_point(colour = "#A11D21", size = 3, alpha = 0.3) +
+  labs(
+    x = "Engajamento",
+    y = "Nota IMDB"
+  ) +
+  estat_theme()
+ggsave("IMDBxEngajamentpo.pdf", width = 158, height = 93, units = "mm")
+
+#Quadro de medidas resumo: 
+
+#IMDB:
+round(mean((D$imdb)),2)
+round(sd((D$imdb)),2)
+round(var((D$imdb)),2)
+round(min((D$imdb)),2)
+round(quantile((D$imdb), probs = 0.25),2)
+round(median((D$imdb)),2)
+round(quantile((D$imdb), probs = 0.75),2)
+round(max((D$imdb)),2)
+
+#Engajamento:
+round(mean((D$engagement)),2)
+round(sd((D$engagement)),2)
+round(var((D$engagement)),2)
+round(min((D$engagement)),2)
+round(quantile((D$engagement), probs = 0.25),2)
+round(median((D$engagement)),2)
+round(quantile((D$engagement), probs = 0.75),2)
+round(max((D$engagement)),2)
+
+ggplot(D) +
+  aes(x = imdb, y = engagement) +
+  geom_point(colour = "#A11D21", size = 3, alpha = 0.3) +
   labs(
     x = "Engajamento",
     y = "Nota IMDB"
