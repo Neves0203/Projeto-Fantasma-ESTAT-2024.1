@@ -81,3 +81,6 @@ ggplot(D) +
   ) +
   estat_theme()
 ggsave("IMDBxEngajamentpo.pdf", width = 158, height = 93, units = "mm")
+
+correlation <- cor(D$imdb, D$engagement)
+correlation
