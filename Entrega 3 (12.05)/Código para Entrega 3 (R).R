@@ -5,7 +5,7 @@ library(lubridate)
 library(readr)
 
 #Importar os dados.
-banco_final <- read_csv("~/GitHub/Projeto-Fantasma-ESTAT-2024.1/Entrega 3 (12.05)/banco_final.csv")
+banco_final <- read_csv("Entrega 3 (12.05)/banco_final.csv")
 
 #Padronização da ESTAT.
 estat_colors <- c(
@@ -109,7 +109,7 @@ K <- ggplot(M) +
   labs(x = "Terreno", y = "Frequência") +
   estat_theme()
 K + scale_y_continuous(limits = c(0, 70))
-ggsave("Funcionamento_armadilhaxTerreno.pdf", width = 158, height = 93, units = "mm")
+ggsave("Entrega 3 (12.05)/Funcionamento_armadilhaxTerreno.pdf", width = 158, height = 93, units = "mm")
 
 #Tabela de frequência:
 C

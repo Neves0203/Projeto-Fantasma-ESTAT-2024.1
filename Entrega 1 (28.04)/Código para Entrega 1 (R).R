@@ -1,12 +1,10 @@
 library(tidyverse)
 library(ggplot2)
 library(tibble)
-library(lubridate)
 library(readr)
 
 #Importar os dados.
-dados <- read_csv("dados.csv")
-View(dados)
+dados <- read_csv("Entrega 1 (28.04)/dados.csv")
 
 #Padronização da ESTAT.
 estat_colors <- c(
@@ -85,45 +83,6 @@ T <- T %>%
     Formato == "Movie" ~ "Filme",
     TRUE ~ Formato
   ))
-
-#Filtrar os CrossOvers.
-GC <- T %>%
-  filter(T$Formato == "CrossOver")
-GC
-
-#Filtrar os Filmes
-GF <- T %>%
-  filter(T$Formato == "Filme")
-GF
-
-#Filtrar os CrossOvers.
-GS <- T %>%
-  filter(T$Formato == "Episódios (Série)")
-GS
-
-#Gráfico de linhas CrossOver.
-ggplot(GC) +
-  aes(x=Década, y=Frequência, group=1) +
-  geom_line(size=1,colour="#A11D21") + geom_point(colour="#A11D21",size=2) +
-  labs(x="Década", y="Frequência de CrossOvers") +
-  estat_theme()
-ggsave("Freq.CrossOversxDécada.pdf", width = 158, height = 93, units = "mm")
-
-#Gráfico de linhas Filme.
-ggplot(GF) +
-  aes(x=Década, y=Frequência, group=1) +
-  geom_line(size=1,colour="#A11D21") + geom_point(colour="#A11D21",size=2) +
-  labs(x="Década", y="Frequência de Filmes") +
-  estat_theme()
-ggsave("Freq.FilmesxDécada.pdf", width = 158, height = 93, units = "mm")
-
-#Gráfico de linhas Série
-ggplot(GS) +
-  aes(x=Década, y=Frequência, group=1) +
-  geom_line(size=1,colour="#A11D21") + geom_point(colour="#A11D21",size=2) +
-  labs(x="Década", y="Frequência de Episódios (Série)") +
-  estat_theme()
-ggsave("Freq.EpisódiosxDécada.pdf", width = 158, height = 93, units = "mm")
 
 #Gráfico de linhas com as três variáveis.
 ggplot(T) +

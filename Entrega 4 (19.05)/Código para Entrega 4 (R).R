@@ -48,7 +48,11 @@ ggplot(D) +
     y = "Nota IMDB"
   ) +
   estat_theme()
-ggsave("IMDBxEngajamentpo.pdf", width = 158, height = 93, units = "mm")
+ggsave("Entrega 4 (19.05)/IMDBxEngajamentpo.pdf", width = 158, height = 93, units = "mm")
+
+# Coeficiente de Pearson:
+correlation <- cor(D$imdb, D$engagement)
+correlation
 
 #Quadro de medidas resumo: 
 
@@ -72,15 +76,4 @@ round(median((D$engagement)),2)
 round(quantile((D$engagement), probs = 0.75),2)
 round(max((D$engagement)),2)
 
-ggplot(D) +
-  aes(x = imdb, y = engagement) +
-  geom_point(colour = "#A11D21", size = 3, alpha = 0.3) +
-  labs(
-    x = "Engajamento",
-    y = "Nota IMDB"
-  ) +
-  estat_theme()
-ggsave("IMDBxEngajamentpo.pdf", width = 158, height = 93, units = "mm")
 
-correlation <- cor(D$imdb, D$engagement)
-correlation

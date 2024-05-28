@@ -105,9 +105,6 @@ ggplot() +
   geom_boxplot(aes(x = reorder(Daphnie, Engajamento, FUN = mean), Engajamento), Daphnie, fill = c("#A11D21"), width = 0.5)+
   stat_summary(aes(Daphnie, Engajamento), Daphnie, fun = "mean", geom = "point", shape = 23, size = 3, fill = "white"
   ) +
-  geom_boxplot(aes(x = reorder(`Não capturado`, Engajamento, FUN = mean), Engajamento), `Não capturado`, fill = c("#A11D21"), width = 0.5)+
-  stat_summary(aes(`Não capturado`, Engajamento), `Não capturado`, fun = "mean", geom = "point", shape = 23, size = 3, fill = "white"
-  ) +
   geom_boxplot(aes(x = reorder(Scooby, Engajamento, FUN = mean), Engajamento), Scooby, fill = c("#A11D21"), width = 0.5)+
   stat_summary(aes(Scooby, Engajamento), Scooby, fun = "mean", geom = "point", shape = 23, size = 3, fill = "white"
   ) +
@@ -122,7 +119,7 @@ ggplot() +
   ) +
   labs(x = "Personagem", y = "Engajamento") +
   estat_theme()
-ggsave("EngajamentoxPersonagem.pdf", width = 158, height = 93, units = "mm")
+ggsave("Entrega 5 (26.05)/EngajamentoxPersonagem.pdf", width = 158, height = 93, units = "mm")
 
 
 #Tabela de medidas:
@@ -196,3 +193,7 @@ round(quantile((`Não capturado`$Engajamento), probs = 0.25),2)
 round(median((`Não capturado`$Engajamento)),2)
 round(quantile((`Não capturado`$Engajamento), probs = 0.75),2)
 round(max((`Não capturado`$Engajamento)),2)
+
+geom_boxplot(aes(x = reorder(`Não capturado`, Engajamento, FUN = mean), Engajamento), `Não capturado`, fill = c("#A11D21"), width = 0.5)+
+  stat_summary(aes(`Não capturado`, Engajamento), `Não capturado`, fun = "mean", geom = "point", shape = 23, size = 3, fill = "white"
+  ) +

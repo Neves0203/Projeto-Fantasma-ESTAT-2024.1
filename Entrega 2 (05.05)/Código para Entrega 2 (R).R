@@ -5,7 +5,7 @@ library(lubridate)
 library(readr)
 
 #Importar os dados.
-dados <- read_csv("dados.csv")
+dados <- read_csv("Entrega 2 (05.05)/dados.csv")
 
 #Padronização da ESTAT.
 estat_colors <- c(
@@ -71,7 +71,7 @@ ggplot(T1) +
   ) +
   labs(x = "Temporada", y = "Nota IMDB") +
   estat_theme()
-ggsave("IMDBxTemporada.pdf", width = 158, height = 93, units = "mm")
+ggsave("Entrega 2 (05.05)/IMDBxTemporada.pdf", width = 158, height = 93, units = "mm")
 
 #Quadro de medidas resumo.
 D2 <- as.data.frame(T1)
