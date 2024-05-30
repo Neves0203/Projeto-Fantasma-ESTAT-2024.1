@@ -35,7 +35,7 @@ estat_theme <- function(...) {
 
 #Transforma em Tibble:
 D <- as_tibble(banco_final)
-D <- D[ , c(9,20,21,22,23,24,41,42)]
+D <- D[ , c(8,9,20,21,22,23,24,41,42)]
 D <- rename(D, "Fred" = caught_fred)
 D <- rename(D, "Daphnie" = caught_daphnie)
 D <- rename(D, "Velma" = caught_velma)
@@ -48,7 +48,7 @@ D <- rename(D, "Engajamento" = engagement)
 
 #Separar os dados:
 #Fred:
-X <- D[ ,c("Engajamento",'Fred')]
+X <- D[ ,c("Engajamento",'Fred',"imdb")]
 FX <- X$Fred == FALSE
 X$Fred[FX] <- NA
 Fred <- na.omit(X)
@@ -56,42 +56,42 @@ Fred$Fred <- "Fred"
 
 
 #Daphnie:
-X <- D[ ,c("Engajamento",'Daphnie')]
+X <- D[ ,c("Engajamento",'Daphnie',"imdb")]
 FX <- X$Daphnie == FALSE
 X$Daphnie[FX] <- NA
 Daphnie <- na.omit(X)
 Daphnie$Daphnie <- "Daphnie"
 
 #Velma:
-X <- D[ ,c("Engajamento",'Velma')]
+X <- D[ ,c("Engajamento",'Velma',"imdb")]
 FX <- X$Velma == FALSE
 X$Velma[FX] <- NA
 Velma <- na.omit(X)
 Velma$Velma <- "Velma"
 
 #Salsicha:
-X <- D[ ,c("Engajamento",'Salsicha')]
+X <- D[ ,c("Engajamento",'Salsicha',"imdb")]
 FX <- X$Salsicha == FALSE
 X$Salsicha[FX] <- NA
 Salsicha <- na.omit(X)
 Salsicha$Salsicha <- "Salsicha"
 
 #Scooby:
-X <- D[ ,c("Engajamento",'Scooby')]
+X <- D[ ,c("Engajamento",'Scooby',"imdb")]
 FX <- X$Scooby == FALSE
 X$Scooby[FX] <- NA
 Scooby <- na.omit(X)
 Scooby$Scooby <- "Scooby"
 
 #Outro:
-X <- D[ ,c("Engajamento",'Outro')]
+X <- D[ ,c("Engajamento",'Outro',"imdb")]
 FX <- X$Outro == FALSE
 X$Outro[FX] <- NA
 Outro <- na.omit(X)
 Outro$Outro <- "Outro"
 
 #Não capturou:
-X <- D[ ,c("Engajamento", "Não capturado")]
+X <- D[ ,c("Engajamento", "Não capturado","imdb")]
 FX <- X$`Não capturado` == FALSE
 X$`Não capturado`[FX] <- NA
 `Não capturado` <- na.omit(X)
@@ -104,6 +104,9 @@ ggplot() +
   ) +
   geom_boxplot(aes(x = reorder(Daphnie, Engajamento, FUN = mean), Engajamento), Daphnie, fill = c("#A11D21"), width = 0.5)+
   stat_summary(aes(Daphnie, Engajamento), Daphnie, fun = "mean", geom = "point", shape = 23, size = 3, fill = "white"
+  ) +
+  geom_boxplot(aes(x = reorder(`Não capturado`, Engajamento, FUN = mean), Engajamento), `Não capturado`, fill = c("#A11D21"), width = 0.5)+
+  stat_summary(aes(`Não capturado`, Engajamento), `Não capturado`, fun = "mean", geom = "point", shape = 23, size = 3, fill = "white"
   ) +
   geom_boxplot(aes(x = reorder(Scooby, Engajamento, FUN = mean), Engajamento), Scooby, fill = c("#A11D21"), width = 0.5)+
   stat_summary(aes(Scooby, Engajamento), Scooby, fun = "mean", geom = "point", shape = 23, size = 3, fill = "white"
@@ -121,6 +124,30 @@ ggplot() +
   estat_theme()
 ggsave("Entrega 5 (26.05)/EngajamentoxPersonagem.pdf", width = 158, height = 93, units = "mm")
 
+ggplot() +
+  geom_boxplot(aes(x = reorder(Velma, imdb, FUN = mean), imdb), Velma, fill = c("#A11D21"), width = 0.5)+
+  stat_summary(aes(Velma, imdb), Velma, fun = "mean", geom = "point", shape = 23, size = 3, fill = "white"
+  ) +
+  geom_boxplot(aes(x = reorder(Daphnie, imdb, FUN = mean), imdb), Daphnie, fill = c("#A11D21"), width = 0.5)+
+  stat_summary(aes(Daphnie, imdb), Daphnie, fun = "mean", geom = "point", shape = 23, size = 3, fill = "white"
+  ) +
+  geom_boxplot(aes(x = reorder(`Não capturado`, imdb, FUN = mean), imdb), `Não capturado`, fill = c("#A11D21"), width = 0.5)+
+  stat_summary(aes(`Não capturado`, imdb), `Não capturado`, fun = "mean", geom = "point", shape = 23, size = 3, fill = "white"
+  ) +
+  geom_boxplot(aes(x = reorder(Scooby, imdb, FUN = mean), imdb), Scooby, fill = c("#A11D21"), width = 0.5)+
+  stat_summary(aes(Scooby, imdb), Scooby, fun = "mean", geom = "point", shape = 23, size = 3, fill = "white"
+  ) +
+  geom_boxplot(aes(x = reorder(Salsicha, imdb, FUN = mean), imdb), Salsicha, fill = c("#A11D21"), width = 0.5)+
+  stat_summary(aes(Salsicha, imdb), Salsicha, fun = "mean", geom = "point", shape = 23, size = 3, fill = "white"
+  ) +
+  geom_boxplot(aes(x = reorder(Fred, imdb, FUN = mean), y = imdb), Fred, fill = "#A11D21", width = 0.5) +
+  stat_summary(aes(Fred, imdb), Fred, fun = "mean", geom = "point", shape = 23, size = 3, fill = "white"
+  ) +
+  geom_boxplot(aes(x = reorder(Outro, imdb, FUN = mean), imdb), Outro, fill = c("#A11D21"), width = 0.5)+
+  stat_summary(aes(Outro, imdb), Outro, fun = "mean", geom = "point", shape = 23, size = 3, fill = "white"
+  ) +
+  labs(x = "Personagem", y = "IMDB") +
+  estat_theme()
 
 #Tabela de medidas:
 
@@ -194,6 +221,3 @@ round(median((`Não capturado`$Engajamento)),2)
 round(quantile((`Não capturado`$Engajamento), probs = 0.75),2)
 round(max((`Não capturado`$Engajamento)),2)
 
-geom_boxplot(aes(x = reorder(`Não capturado`, Engajamento, FUN = mean), Engajamento), `Não capturado`, fill = c("#A11D21"), width = 0.5)+
-  stat_summary(aes(`Não capturado`, Engajamento), `Não capturado`, fun = "mean", geom = "point", shape = 23, size = 3, fill = "white"
-  ) +
