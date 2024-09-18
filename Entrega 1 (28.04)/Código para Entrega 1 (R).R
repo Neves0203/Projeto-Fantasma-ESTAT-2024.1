@@ -3,7 +3,7 @@ library(ggplot2)
 library(tibble)
 library(readr)
 
-#Importar os dados.
+#Importar os dados do PS.
 dados <- read_csv("Entrega 1 (28.04)/dados.csv")
 
 #Padronização da ESTAT.
